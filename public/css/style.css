@@ -1,0 +1,24 @@
+.has-error > .input-group{
+    border: 0.5px solid red;
+}
+.has-error > i{
+    color: red;
+}
+.mi-alert{
+    z-index: 9999999999999999999;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    display: block;
+    clear: both;
+    animation: slideUp 1s ease-in;
+}
+
+@keyframes slideUp {
+    from{
+        bottom: -100px;
+    }
+    to{
+        bottom: 0;
+    }
+}
