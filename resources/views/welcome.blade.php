@@ -1,5 +1,8 @@
 @extends('layouts.page')
 @section('content')
+<a href="https://api.whatsapp.com/send?phone=966503619413" class="whats-btn" target="_blank">
+<i class="fab fa-whatsapp fa-2x"></i>
+</a>
 <div class="main-content">
     <!-- Header -->
     <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">

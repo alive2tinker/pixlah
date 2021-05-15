@@ -22,3 +22,14 @@
         bottom: 0;
     }
 }
+
+.whats-btn{
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 999999999999999;
+    padding: 2%;
+    background: green;
+    color: white;
+    border-radius: 50%;
+}
