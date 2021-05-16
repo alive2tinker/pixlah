@@ -192,6 +192,7 @@
               @endforelse
             </tbody>
           </table>
+            {{ $screens->links() }}
         </div>
       </div>
       <div class="card">
@@ -251,6 +252,7 @@
               @endforelse
             </tbody>
           </table>
+            {{ $attachments->links() }}
         </div>
       </div>
     </div>
@@ -296,6 +298,7 @@
               @endforelse
             </tbody>
           </table>
+            {{ $messages->links() }}
         </div>
       </div>
       <div class="card">

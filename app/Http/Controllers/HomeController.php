@@ -24,9 +24,9 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'screens' => Auth::user()->screens,
-            'messages' => Auth::user()->messages,
-            'attachments' => Auth::user()->attachments
+            'screens' => Auth::user()->screens()->orderby('created_at','desc')->paginate(10),
+            'messages' => Auth::user()->messages()->orderby('created_at','desc')->paginate(10),
+            'attachments' => Auth::user()->attachments()->orderby('created_at','desc')->paginate(10)
         ]);
     }
 }
