@@ -81,16 +81,6 @@
             &copy; {{ date('Y')}} <a href="/" class="font-weight-bold ml-1" target="_blank">iScreenOS</a>
           </div>
         </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            <li class="nav-item">
-              <a href="/privacy" class="nav-link">Terms & Privacy</a>
-            </li>
-            <li class="nav-item">
-              <a href="/contact" class="nav-link">Contact</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </footer>
