@@ -55,4 +55,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    public function thumbnail()
+    {
+        $initals = substr(explode(' ', $this->name)[0],0,1)
+            . substr(explode(' ', $this->name)[1], 0,1);
+        return "f8712a/FFFFFF/?text=" . $initals;
+    }
 }

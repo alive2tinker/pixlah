@@ -1,6 +1,22 @@
 @extends('layouts.app')
-
+@section('title', "Home")
 @section('content')
+    <div class="modal fade" id="new-attachment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Attachment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0">
+                    <new-attachment-form screen="{{$screen->id ?? ''}}">
+                        </new-attachment-form>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="container-fluid mt--6">
   <div class="modal fade" id="new-message-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -202,7 +218,7 @@
               <h3 class="mb-0">Attachments</h3>
             </div>
             <div class="col text-right">
-              <button type="button" data-toggle="modal" data-target="#new-screen-modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
+              <button type="button" data-toggle="modal" data-target="#new-attachment-modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -224,21 +240,17 @@
                   {{ $attachment->title }}
                 </th>
                 <td>
-                  {{ $attachment->location }}
+                  {{ $attachment->type }}
                 </td>
                 <td>
                   {{ $attachment->duration }}
                 </td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ route('screens.show', $screen->id) }}" class="btn btn-outline-primary"><i class="fa fa-eye"></i></a>
-                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#edit-screen-{{$screen->id}}">
-                      <i class="fa fa-edit"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger delete-screen-btn" data-id="{{ $screen->id }}"><i class="fa fa-trash"></i></button>
-                    <form id="delete-screen-form-{{$screen->id}}" action="{{ route('screens.destroy', $screen->id)}}" method="post">
+                    <form action="{{ route('attachments.destroy', $attachment->id)}}" method="post">
                       @csrf
                       @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger delete-screen-btn"><i class="fa fa-trash"></i></button>
                     </form>
                   </div>
                 </td>
@@ -307,6 +319,7 @@
             <div class="col">
               <h3 class="mb-0">Widgets</h3>
             </div>
+              <div class="col text-right"><a href="#" class="btn btn-sm btn-primary">Widgets market</a></div>
           </div>
         </div>
         <div class="table-responsive">
@@ -319,42 +332,22 @@
               </tr>
             </thead>
             <tbody>
+                @forelse($widgets as $widget)
                 <tr>
                   <th scope="row"><i class="fa fa-cloud"></i> Weather</th>
                   <td><button class="btn btn-outline-success">Enable</button></td>
                 </tr>
+                @empty
+                    <tr>
+                        <th scope="row" colspan="2"><h4 class="text-center">No widgets! get yours at <a href="#">widget market</a></h4></th>
+                    </tr>
+                @endforelse
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <footer class="footer pt-0">
-    <div class="row align-items-center justify-content-lg-between">
-      <div class="col-lg-6">
-        <div class="copyright text-center  text-lg-left  text-muted">
-          &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </footer>
 </div>
 @endsection
 @section('js')
