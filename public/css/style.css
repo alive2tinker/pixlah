@@ -6,7 +6,7 @@
 }
 .mi-alert{
     z-index: 9999999999999999999;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 10px;
     display: block;

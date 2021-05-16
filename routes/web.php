@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/search', \App\Http\Controllers\SearchController::class)->name('search');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/screen_detach/{screen}/{object}/{type}', [ScreenController::class, 'detach'])->name('screen.detach');
 Route::get('/screen_resource/{screen}', [ScreenController::class, 'resource']);
