@@ -13,6 +13,9 @@
               <h1 class="text-white display-1">iScreenOS</h1>
               <div class="typewriter"><h2>Realtime Screen Signs for a <b id="pCustomer"></b></h2></div>
               <p class="text-lead text-white">Save money while offering your guests a premium experience</p>
+                <div class="row justify-content-center">
+                    <div class="col-md-5"><a href="{{ route('register') }}" class="btn btn-secondary btn-block">Register Now</a></div>
+                </div>
             </div>
           </div>
         </div>
