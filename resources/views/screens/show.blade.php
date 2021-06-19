@@ -145,8 +145,8 @@
             <div class="form-group">
               <label for="">Presentation Mode</label>
               <select class="form-control mx-2" name="presentation_mode">
-                <option value="standard">Standard</option>
-                <option value="theater">theater</option>
+                <option @if($screen->presentation_mode === "standard") selected @endif value="standard">Standard</option>
+                <option @if($screen->presentation_mode === "theater") selected @endif value="theater">theater</option>
               </select>
             </div>
             <div class="form-group">
