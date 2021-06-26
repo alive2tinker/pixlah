@@ -208,7 +208,7 @@
               @endforelse
             </tbody>
           </table>
-            {{ $screens->links() }}
+            {{ $screens->links('argon_paginator') }}
         </div>
       </div>
       <div class="card">
@@ -264,8 +264,10 @@
               @endforelse
             </tbody>
           </table>
-            {{ $attachments->links() }}
         </div>
+          <div class="card-footer">
+              {{ $attachments->links('argon_paginator') }}
+          </div>
       </div>
     </div>
     <div class="col-xl-4">
@@ -310,7 +312,7 @@
               @endforelse
             </tbody>
           </table>
-            {{ $messages->links() }}
+            {{ $messages->links('argon_paginator') }}
         </div>
       </div>
       <div class="card">
