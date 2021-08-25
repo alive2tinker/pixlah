@@ -5,7 +5,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Attachment</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('New Attachment') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -22,7 +22,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{ __('New Message') }}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -30,7 +30,7 @@
         <div class="modal-body pt-0">
           <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">new message</a>
+              <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">{{ __('New Message') }}</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
@@ -38,7 +38,7 @@
               <form action="{{ route('messages.store') }}" method="post">
                 @csrf
                 <div class="form-group">
-                  <label for="message-text">Text</label>
+                  <label for="message-text">{{ __('Text') }}</label>
                   <input type="text" name="text" value="{{ old('text') }}" class="form-control" id="message-text">
                 </div>
                 <div class="form-group">
@@ -49,7 +49,7 @@
                   </label>
                 </div>
                 <div class="form-group row justify-content-center">
-                  <div class="col-md-5"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+                  <div class="col-md-5"><button class="btn btn-primary btn-block" type="submit">{{ __('Save') }}</button></div>
                 </div>
               </form>
             </div>
@@ -63,7 +63,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Screen</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{ __('New Screen') }}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -72,32 +72,32 @@
           <form id="new-screen-form" action="{{ route('screens.store') }}" method="post">
             @csrf
             <div class="form-group">
-              <label for="screen-title">Title</label>
+              <label for="screen-title">{{ __('Title') }}</label>
               <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="reference title">
             </div>
             <div class="form-group">
-              <label for="screen-title">Location</label>
+              <label for="screen-title">{{ __('Location') }}</label>
               <input type="text" class="form-control" name="location" value="{{ old('location') }}" placeholder="physical location">
             </div>
             <div class="form-group">
-              <label for="">Has a message bar?</label>
+              <label for="">{{ __('Show a message bar') }}?</label>
               <label class="custom-toggle mx-2">
                 <input type="checkbox" name="has_message_bar" id="hmb-value">
                 <span class="custom-toggle-slider rounded-circle" id="hmb-check" data-label-off="No" data-label-on="Yes"></span>
               </label>
             </div>
             <div class="form-group">
-              <label for="">Presentation Mode</label>
+              <label for="">{{ __('Presentation Mode') }}</label>
               <select class="form-control mx-2" id="exampleFormControlSelect1">
-                <option value="standard">Standard</option>
-                <option value="theater">theater</option>
+                <option value="standard">{{ __('Standard') }}</option>
+                <option value="theater">{{ __('theater') }}</option>
               </select>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="new-screen-submit">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+          <button type="button" class="btn btn-primary" id="new-screen-submit">{{ __('Save changes') }}</button>
         </div>
       </div>
     </div>
@@ -117,11 +117,11 @@
             @method('PATCH')
             @csrf
             <div class="form-group">
-              <label for="screen-title">Title</label>
+              <label for="screen-title">{{ __('Title') }}</label>
               <input type="text" class="form-control" name="title" value="{{old('title', $screen->title)}}" placeholder="reference title">
             </div>
             <div class="form-group">
-              <label for="screen-title">Location</label>
+              <label for="screen-title">{{ __('Location') }}</label>
               <input type="text" class="form-control" name="location" value="{{ old('location', $screen->location) }}" placeholder="physical location">
             </div>
             <div class="form-group">
@@ -132,17 +132,17 @@
               </label>
             </div>
             <div class="form-group">
-              <label for="">Presentation Mode</label>
+              <label for="">{{ __('Presentation Mode') }}</label>
               <select class="form-control mx-2" name="presentation_mode" id="exampleFormControlSelect1">
-                <option @if($screen->presentation_mode == 'standard') selected @endif value="standard">Standard</option>
-                <option @if($screen->presentation_mode == 'theater') selected @endif value="theater">theater</option>
+                <option @if($screen->presentation_mode == 'standard') selected @endif value="standard">{{ __('Standard') }}</option>
+                <option @if($screen->presentation_mode == 'theater') selected @endif value="theater">{{ __('theater') }}</option>
               </select>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary edit-screen-submit" data-id="{{$screen->id}}">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+          <button type="button" class="btn btn-primary edit-screen-submit" data-id="{{$screen->id}}">{{ __('Save changes') }}</button>
         </div>
       </div>
     </div>
@@ -154,10 +154,10 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Screens</h3>
+              <h3 class="mb-0 rtl">{{ __('Screens') }}</h3>
             </div>
             <div class="col text-right">
-              <button type="button" data-toggle="modal" data-target="#new-screen-modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
+              <button type="button" data-toggle="modal" data-target="#new-screen-modal" class="btn btn-sm btn-primary {{ config('app.locale') === 'ar' ? 'float-left' : '' }}"><i class="fa fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -166,10 +166,10 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Location</th>
-                <th scope="col">Attachment Count</th>
-                <th scope="col">Actions</th>
+                <th scope="col">{{ __('Title') }}</th>
+                <th scope="col">{{ __('Location') }}</th>
+                <th scope="col">{{ __('Attachment Count') }}</th>
+                <th scope="col">{{ __('Actions') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -202,7 +202,7 @@
               @empty
               <tr>
                 <th colspan="4" scope="row">
-                  <h4 class="text-center">no data</h4>
+                  <h4 class="text-center">{{ __('no data') }}</h4>
                 </th>
               </tr>
               @endforelse
@@ -215,10 +215,10 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Attachments</h3>
+              <h3 class="mb-0 rtl">{{ __('Attachments') }}</h3>
             </div>
             <div class="col text-right">
-              <button type="button" data-toggle="modal" data-target="#new-attachment-modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></button>
+              <button type="button" data-toggle="modal" data-target="#new-attachment-modal" class="btn btn-sm btn-primary {{ config('app.locale') === 'ar' ? 'float-left' : '' }}"><i class="fa fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -227,10 +227,10 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Type</th>
-                <th scope="col">Duration</th>
-                <th scope="col">Actions</th>
+                <th scope="col">{{ __('Title') }}</th>
+                <th scope="col">{{ __('Type') }}</th>
+                <th scope="col">{{ __('Duration') }}</th>
+                <th scope="col">{{ __('Actions') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -258,7 +258,7 @@
               @empty
               <tr>
                 <th colspan="4" scope="row">
-                  <h4 class="text-center">no data</h4>
+                  <h4 class="text-center">{{ __('no data') }}</h4>
                 </th>
               </tr>
               @endforelse
@@ -275,10 +275,10 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Messages</h3>
+              <h3 class="mb-0 rtl">{{ __('Messages') }}</h3>
             </div>
             <div class="col text-right">
-              <button data-target="#new-message-modal" data-toggle="modal" class="btn btn-sm btn-primary">New Message</button>
+              <button data-target="#new-message-modal" data-toggle="modal" class="btn btn-sm btn-primary {{ config('app.locale') === 'ar' ? 'float-left' : '' }}">{{ __('New Message') }}</button>
             </div>
           </div>
         </div>
@@ -287,8 +287,8 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Text</th>
-                <th scope="col">Delete</th>
+                <th scope="col">{{ __('Text') }}</th>
+                <th scope="col">{{ __('Delete') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -306,7 +306,7 @@
               @empty
               <tr>
                 <th scope="row" colspan="2">
-                  <h4 class="text-center">No messages</h4>
+                  <h4 class="text-center">{{ __('No messages') }}</h4>
                 </th>
               </tr>
               @endforelse
@@ -319,9 +319,9 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Widgets</h3>
+              <h3 class="mb-0 {{ config('app.locale') === 'ar' ? 'rtl' : '' }}">{{ __('Widgets') }}</h3>
             </div>
-              <div class="col text-right"><a href="#" class="btn btn-sm btn-primary">Widgets market</a></div>
+              <div class="col text-right"><a href="#" class="btn btn-sm btn-primary {{ config('app.locale') === 'ar' ? 'float-left' : '' }}">{{ __('Widgets market') }}</a></div>
           </div>
         </div>
         <div class="table-responsive">
@@ -329,19 +329,19 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Action</th>
+                <th scope="col">{{ __('Name') }}</th>
+                <th scope="col">{{ __('Action') }}</th>
               </tr>
             </thead>
             <tbody>
                 @forelse($widgets as $widget)
                 <tr>
-                  <th scope="row"><i class="fa fa-cloud"></i> Weather</th>
-                  <td><button class="btn btn-outline-success">Enable</button></td>
+                  <th scope="row"><i class="fa fa-cloud"></i>{{ __(' Weather') }}</th>
+                  <td><button class="btn btn-outline-success">{{ __('Enable') }}</button></td>
                 </tr>
                 @empty
                     <tr>
-                        <th scope="row" colspan="2"><h4 class="text-center">No widgets! get yours at <a href="#">widget market</a></h4></th>
+                        <th scope="row" colspan="2"><h4 class="text-center">No widgets! get yours at <a href="#">{{ __('widget market') }}</a></h4></th>
                     </tr>
                 @endforelse
             </tbody>

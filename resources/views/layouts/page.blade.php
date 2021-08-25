@@ -57,7 +57,24 @@
 		</li>
         </ul>
         <hr class="d-lg-none" />
-        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+        <ul class="navbar-nav w-auto {{ config('app.locale') === 'ar' ? 'mr-lg-auto' : 'ml-lg-auto' }}">
+        <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ config('app.locale')}}
+                </a>
+                <div class="dropdown-menu  dropdown-menu-right  py-0">
+                  <ul class="list-unstyled mx-4 py-4">
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <li class="locale-link">
+                      <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                      </a>
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+              </li>
+          
           <li class="nav-item d-none d-lg-block ml-lg-4">
             <a href="/login" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">

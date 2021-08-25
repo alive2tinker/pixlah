@@ -36,3 +36,17 @@
 .logo{
     color: #5e72e4 !important;
 }
+.locale-link::hover{
+    background: #444 !important;
+}
+
+.main-content .rtl{
+ 
+}
+.navbar-vertical.navbar-expand-xs.fixed-right + .main-content {
+    margin-right: 250px !important;
+}
+
+h3.mb-0.rtl{
+    float: right !important;
+}

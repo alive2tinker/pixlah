@@ -3,18 +3,18 @@
     <div class="container-fluid mt--6">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Search Results</h3>
+                <h3 class="card-title">{{ __('Search Results') }}</h3>
             </div>
             <div class="card-body">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home">screens <span class="badge badge-info">{{ count($screens) }}</span></a>
+                        <a class="nav-link active" data-toggle="tab" href="#home">{{ __('screens ') }}<span class="badge badge-info">{{ count($screens) }}</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu1">attachments <span class="badge badge-info">{{ count($attachments) }}</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu1">{{ __('attachments ') }}<span class="badge badge-info">{{ count($attachments) }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">messages <span class="badge badge-info">{{ count($messages) }}</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu2">{{ __('messages ') }}<span class="badge badge-info">{{ count($messages) }}</a>
                     </li>
                 </ul>
 
@@ -29,7 +29,7 @@
                                     </div>
                                 </a>
                             @empty
-                                <h4 class="text-center">No data</h4>
+                                <h4 class="text-center">{{ __('No data') }}</h4>
                             @endforelse
                             {{ $screens->links() }}
                         </div>
@@ -48,7 +48,7 @@
                                     </ul>
                                 </a>
                             @empty
-                                <h4 class="text-center">No data</h4>
+                                <h4 class="text-center">{{ __('No data') }}</h4>
                             @endforelse
                             {{ $attachments->links() }}
                         </div>
@@ -62,7 +62,7 @@
                                 </div>
                             </a>
                         @empty
-                            <h4 class="text-center">No data</h4>
+                            <h4 class="text-center">{{ __('No data') }}</h4>
                         @endforelse
                         {{ $messages->links() }}
                     </div>
