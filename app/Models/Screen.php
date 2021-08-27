@@ -31,4 +31,9 @@ class Screen extends Model
     {
         return $this->belongsToMany(Message::class, 'screens_messages');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

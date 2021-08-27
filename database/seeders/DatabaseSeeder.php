@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ScreenSeeder::class);
         $this->call(AttachmentSeeder::class);
         Message::factory(3)->create();
+        $this->call(OrderSeeder::class);
     }
 }

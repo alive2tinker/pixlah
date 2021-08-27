@@ -14,6 +14,7 @@ use App\Events\MessageAttached;
 use App\Events\MessageDetached;
 use App\Events\ScreenUpdated;
 use App\Models\Message;
+use App\Models\Order;
 
 class ScreenController extends Controller
 {
@@ -59,12 +60,18 @@ class ScreenController extends Controller
      */
     public function show(Screen $screen)
     {
+        $orders = Order::where([
+            ['screen_id', $screen->id],
+            ['status', '!=', "served"]
+        ])->get();
+
         $userAttachments = Auth::user()->attachments;
         $userMessages = Auth::user()->messages;
         return view('screens.show', [
             'screen' => $screen,
             'userAttachments' => $userAttachments,
-            'userMessages' => $userMessages
+            'userMessages' => $userMessages,
+            'orders' => $orders
         ]);
     }
 

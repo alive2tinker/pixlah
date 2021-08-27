@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ScreenController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
@@ -21,6 +22,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::get('/show/{screen}', [ScreenController::class, 'showScreen'])->name('showScreen');
+Route::get('/orderIsServed/{order}', [OrderController::class, 'orderIsServed'])->name('orderIsServed');
+Route::get('/orderIsServing/{order}', [OrderController::class, 'orderIsServing'])->name('orderIsServing');
+Route::get('/update-orders/{screen}', [OrderController::class, 'updateOrders']);
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {

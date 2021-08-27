@@ -120,9 +120,9 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ config('app.locale')}}
+                  {{ config('app.locale')}} <i class="fa fa-caret-down"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0">
+                <div class="dropdown-menu dropdown-menu-right  py-0">
                   <ul class="list-unstyled mx-4 py-4">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li class="locale-link">

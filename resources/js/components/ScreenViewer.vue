@@ -1,137 +1,189 @@
 <template>
     <div>
-        <div class="spinnerContainer" v-if="isLoading">
+        <div class="spinnerContainer" v-if="isLoading && screen">
             <div class="arc"></div>
             <p class="text-danger" id="errorMessage">No Attachments</p>
         </div>
-        <div v-if="!isStandardPresentationMode">
-                <div class="bg"></div>
-                <div class="bg bg2"></div>
-                <div class="bg bg3"></div>
-            </div>
-        <div key="screen"
-            :class="{'standardPresentation':isStandardPresentationMode, 'theater-presentation': !isStandardPresentationMode}"
-            v-if="!isLoading"
-        >
-            <div
-                v-if="screen.attachments[currentSlide].type === 'image'"
-                :key="screen.attachments[currentSlide]"
-            >
-                <img
-                    :class="{'mediaContainer': isStandardPresentationMode}"
-                    :src="
-                        screen.attachments[currentSlide]
-                            ? screen.attachments[currentSlide].link
-                            : ''
-                    "
-                    alt=""
-                />
-            </div>
-            <div
-                v-if="screen.attachments[currentSlide].type === 'quote'"
-                :key="screen.attachments[currentSlide]"
-            >
-                <div class="mediaContainer" :key="currentSlide">
-                    <img
-                        :src="
-                            screen.attachments[currentSlide]
-                                ? screen.attachments[currentSlide].link
-                                : ''
-                        "
-                        alt=""
-                    />
-                    <div class="quote-container">
-                        <h1 class="display-4 q-text">
-                            {{ screen.attachments[currentSlide].text }}
-                        </h1>
+        <div v-if="!isStandardPresentationMode || screenHasOrders">
+            <div class="bg" :style="{ backgroundImage: createBackgroundString }"></div>
+            <div class="bg bg2" :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"></div>
+            <div class="bg bg3" :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"></div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div
+                    key="screen"
+                    :class="{
+                        standardPresentation: isStandardPresentationMode,
+                        'theater-presentation':
+                            !isStandardPresentationMode || screenHasOrders,
+                        'col-md-8': screenHasOrders
+                    }"
+                    v-if="!isLoading && screenHasAttachments"
+                >
+                    <div
+                        v-if="screen.attachments[currentSlide].type === 'image'"
+                        :key="screen.attachments[currentSlide]"
+                    >
+                        <img
+                            :class="{
+                                mediaContainer: isStandardPresentationMode
+                            }"
+                            :src="
+                                screen.attachments[currentSlide]
+                                    ? screen.attachments[currentSlide].link
+                                    : ''
+                            "
+                            alt=""
+                        />
                     </div>
-                </div>
-            </div>
-            <div
-                v-if="screen.attachments[currentSlide].type === 'video'"
-                :key="screen.attachments[currentSlide]"
-            >
-                <video width="100%" autoplay id="backgroundvid">
-                    <source
-                        :src="
-                            screen.attachments[currentSlide]
-                                ? screen.attachments[currentSlide].link
-                                : ''
-                        "
-                        type="video/mp4"
-                    />
-                    <source src="mov_bbb.ogg" type="video/ogg" />
-                    Your browser does not support HTML video.
-                </video>
-            </div>
-            <div
-                v-if="screen.attachments[currentSlide].type === 'twitter'"
-                :key="screen.attachments[currentSlide]"
-            >
-                <div class="container my-5">
-                    <div class="h-50">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img
-                                    :src="
-                                        screen.attachments[currentSlide]
-                                            .tweetInfo.user.profileImage
-                                    "
-                                    alt=""
-                                    style="width:75%;height:25%;"
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <h1 class="display-4">
-                                    {{
-                                        screen.attachments[currentSlide]
-                                            .tweetInfo.user.user
-                                    }}
-                                </h1>
-                                <h4>
-                                    {{ screen.attachments[currentSlide].text }}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h-50">
-                        <div class="row">
-                            <div
-                                :class="
-                                    'col-md-' +
-                                        12 /
-                                            screen.attachments[currentSlide]
-                                                .tweetInfo.images.length
+                    <div
+                        v-if="screen.attachments[currentSlide].type === 'quote'"
+                        :key="screen.attachments[currentSlide]"
+                    >
+                        <div class="mediaContainer" :key="currentSlide">
+                            <img
+                                :src="
+                                    screen.attachments[currentSlide]
+                                        ? screen.attachments[currentSlide].link
+                                        : ''
                                 "
-                                v-for="(imageLink, index) in screen.attachments[
-                                    currentSlide
-                                ].tweetInfo.images"
-                                :key="index"
-                            >
-                                <img
-                                    :src="imageLink"
-                                    alt=""
-                                    class="img-fluid"
-                                    style="height:40vh"
-                                />
+                                alt=""
+                            />
+                            <div class="quote-container">
+                                <h1 class="display-4 q-text">
+                                    {{ screen.attachments[currentSlide].text }}
+                                </h1>
                             </div>
                         </div>
                     </div>
+                    <div
+                        v-if="screen.attachments[currentSlide].type === 'video'"
+                        :key="screen.attachments[currentSlide]"
+                    >
+                        <video width="100%" autoplay id="backgroundvid">
+                            <source
+                                :src="
+                                    screen.attachments[currentSlide]
+                                        ? screen.attachments[currentSlide].link
+                                        : ''
+                                "
+                                type="video/mp4"
+                            />
+                            <source src="mov_bbb.ogg" type="video/ogg" />
+                            Your browser does not support HTML video.
+                        </video>
+                    </div>
+                    <div
+                        v-if="
+                            screen.attachments[currentSlide].type === 'twitter'
+                        "
+                        :key="screen.attachments[currentSlide]"
+                    >
+                        <div class="container my-5">
+                            <div class="h-50">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img
+                                            :src="
+                                                screen.attachments[currentSlide]
+                                                    .tweetInfo.user.profileImage
+                                            "
+                                            alt=""
+                                            style="width:75%;height:25%;"
+                                        />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h1 class="display-4">
+                                            {{
+                                                screen.attachments[currentSlide]
+                                                    .tweetInfo.user.user
+                                            }}
+                                        </h1>
+                                        <h4>
+                                            {{
+                                                screen.attachments[currentSlide]
+                                                    .text
+                                            }}
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-50">
+                                <div class="row">
+                                    <div
+                                        :class="
+                                            'col-md-' +
+                                                12 /
+                                                    screen.attachments[
+                                                        currentSlide
+                                                    ].tweetInfo.images.length
+                                        "
+                                        v-for="(imageLink, index) in screen
+                                            .attachments[currentSlide].tweetInfo
+                                            .images"
+                                        :key="index"
+                                    >
+                                        <img
+                                            :src="imageLink"
+                                            alt=""
+                                            class="img-fluid"
+                                            style="height:40vh"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        v-if="
+                            screen.attachments[currentSlide].type === 'youtube'
+                        "
+                        :key="currentSlide"
+                    >
+                        <youtube
+                            :video-id="screen.attachments[currentSlide].smLink"
+                            :player-vars="{ autoplay: 1 }"
+                            @ended="nextSlide(true)"
+                            ref="youtube"
+                        ></youtube>
+                    </div>
                 </div>
             </div>
-            <div
-                v-if="screen.attachments[currentSlide].type === 'youtube'"
-                :key="currentSlide"
-            >
-                <youtube
-                    :video-id="screen.attachments[currentSlide].smLink"
-                    :player-vars="{ autoplay: 1 }"
-                    @ended="nextSlide(true)"
-                    ref="youtube"
-                ></youtube>
+            <div class="col-md-4 px-4" v-if="screen && screenHasOrders">
+                <h1
+                    class="my-1 display-1 font-weight-bold text-center text-white"
+                >
+                    Orders
+                </h1>
+                <div class="row no-gutters mt-5">
+                    <div
+                        class="col-md-6"
+                        v-for="(order, index) in screen.orders"
+                        :key="index"
+                    >
+                        <div
+                            :class="{
+                                'order-card': true,
+                                'order-serving': servingOrder(order),
+                                'order-waiting': waitingOrder(order),
+                                'mx-2': true
+                            }"
+                        >
+                            <h1
+                                class="display-4 py-5 text-center text-white font-weight-bold"
+                            >
+                                {{ order.number }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="messageBar" v-if="screen && screen.hasMessageBar">
+        <div
+            class="messageBar"
+            v-if="screen && (screen.hasMessageBar || screenHasOrders)"
+        >
             <ul>
                 <li v-for="message in screen.messages" :key="message.id">
                     {{ message.text }}
@@ -156,8 +208,19 @@ export default {
         player() {
             return this.$refs.youtube.player;
         },
-        isStandardPresentationMode(){
-            return this.screen ? this.screen.presentationMode === 'standard' : true;
+        isStandardPresentationMode() {
+            return this.screen
+                ? this.screen.presentationMode === "standard"
+                : true;
+        },
+        screenHasOrders() {
+            return this.screen.orders.length > 0;
+        },
+        screenHasAttachments() {
+            return this.screen.attachments.length > 0;
+        },
+        createBackgroundString(){
+            return `linear-gradient(-60deg, ${this.screen.color1}, ${this.screen.color2})`;
         }
     },
     mounted() {
@@ -170,7 +233,9 @@ export default {
             "AttachmentDetached",
             "ScreenUpdated",
             "MessageAttached",
-            "MessageDetached"
+            "MessageDetached",
+            "OrderHasBeenServed",
+            "OrderIsServing"
         ];
 
         eventsTolisten.forEach(event => {
@@ -187,19 +252,21 @@ export default {
             axios.get(`/screen_resource/${this.id}`).then(response => {
                 this.screen = response.data;
                 this.startShow();
-                if (this.screen.attachments.length > 0) this.isLoading = false;
+                if (
+                    this.screen.attachments.length > 0 ||
+                    this.screen.orders.length > 0
+                )
+                    this.isLoading = false;
                 else this.errorMessage = "no attachments";
             });
         },
         startShow: function() {
-            try{
+            try {
                 var currentDuration = this.screen
-                ? this.screen.attachments[this.currentSlide].duration * 1000
-                : 0;
+                    ? this.screen.attachments[this.currentSlide].duration * 1000
+                    : 0;
                 setTimeout(this.nextSlide, currentDuration);
-            }catch(e){
-
-            }
+            } catch (e) {}
         },
         async playVideo() {
             this.player.playVideo();
@@ -219,7 +286,7 @@ export default {
                 case "AttachmentAttached":
                     this.screen.attachments.push(event.data.attachment);
                     if (this.isLoading) this.isLoading = false;
-                    if(event.data.attachment.type == "youtube"){
+                    if (event.data.attachment.type == "youtube") {
                         window.location.reload();
                     }
                     this.startShow();
@@ -250,7 +317,34 @@ export default {
                     );
                     this.screen.messages.splice(i, 1);
                     break;
+                case "OrderHasBeenServed":
+                    var orderIndex = this.screen.orders.findIndex(
+                        s => s.number === event.data.order.number
+                    );
+                    this.screen.orders.splice(orderIndex, 1);
+                    axios
+                        .get(`/update-orders/${this.id}`)
+                        .then(response => {
+                            this.screen.orders = response.data.data;
+                        })
+                        .catch(err => {
+                            alert(err);
+                        });
+                    break;
+                case "OrderIsServing":
+                    var orderIndex = this.screen.orders.findIndex(
+                        s => s.number === event.data.order.number
+                    );
+                    this.screen.orders[orderIndex].status =
+                        event.data.order.status;
+                    break;
             }
+        },
+        servingOrder: function(order) {
+            return order.status === "serving";
+        },
+        waitingOrder: function(order) {
+            return order.status === "waiting";
         }
     }
 };
@@ -401,7 +495,6 @@ video#backgroundvid {
 }
 .bg {
     animation: slide 3s ease-in-out infinite alternate;
-    background-image: linear-gradient(-60deg, #106eaf 50%, #1fa496 50%);
     bottom: 0;
     left: -50%;
     opacity: 0.5;
@@ -425,6 +518,15 @@ video#backgroundvid {
     top: 60%;
     left: 50%;
     transform: translateX(-50%);
+}
+.order-card {
+    border-radius: 2rem;
+}
+.order-serving {
+    background: green;
+}
+.order-waiting {
+    background: red;
 }
 @-moz-keyframes scroll-left {
     0% {

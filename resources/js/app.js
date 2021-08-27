@@ -26,6 +26,7 @@ Vue.use(VueYoutube)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('screen-viewer', require('./components/ScreenViewer.vue').default);
 Vue.component('new-attachment-form', require('./components/NewAttachmentForm.vue').default);
+Vue.component('color-picker', require('./components/ColorPicker.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
