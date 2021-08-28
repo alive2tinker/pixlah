@@ -63,7 +63,7 @@ class ScreenController extends Controller
         $orders = Order::where([
             ['screen_id', $screen->id],
             ['status', '!=', "served"]
-        ])->get();
+        ])->orderby('status','asc')->paginate(10);
 
         $userAttachments = Auth::user()->attachments;
         $userMessages = Auth::user()->messages;

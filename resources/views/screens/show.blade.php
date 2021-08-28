@@ -246,6 +246,9 @@
             </tbody>
           </table>
         </div>
+        <div class="card-footer">
+        {{ $orders->links('argon_paginator') }}
+        </div>
       </div>
     </div>
     <div class="col-xl-4">
