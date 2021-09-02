@@ -63,7 +63,7 @@ class ScreenController extends Controller
         $orders = Order::where([
             ['screen_id', $screen->id],
             ['status', '!=', "served"]
-        ])->orderby('status','asc')->paginate(10);
+        ])->orderByRaw("FIELD(status , 'serving','waiting') ASC")->paginate(8);
 
         $userAttachments = Auth::user()->attachments;
         $userMessages = Auth::user()->messages;
@@ -83,10 +83,10 @@ class ScreenController extends Controller
      */
     public function edit(Screen $screen)
     {
-        //
+        //asc
     }
 
-    /**
+    /**asc
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

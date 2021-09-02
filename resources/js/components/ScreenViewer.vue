@@ -5,19 +5,33 @@
             <p class="text-danger" id="errorMessage">No Attachments</p>
         </div>
         <div v-if="!isStandardPresentationMode || screenHasOrders">
-            <div class="bg" :style="{ backgroundImage: createBackgroundString }"></div>
-            <div class="bg bg2" :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"></div>
-            <div class="bg bg3" :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"></div>
+            <div
+                class="bg"
+                :style="{ backgroundImage: createBackgroundString }"
+            ></div>
+            <div
+                class="bg bg2"
+                :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"
+            ></div>
+            <div
+                class="bg bg3"
+                :style="`background-image: linear-gradient(-60deg,  ${screen.color1} 50%, ${screen.color2} 50%);`"
+            ></div>
         </div>
         <div class="row no-gutters">
-            <div class="col-md-8">
+            <div
+                :class="{
+                    'col-md-8': screenHasOrders,
+                    'col-md-12': !screenHasOrders,
+                }"
+            >
                 <div
                     key="screen"
                     :class="{
                         standardPresentation: isStandardPresentationMode,
                         'theater-presentation':
                             !isStandardPresentationMode || screenHasOrders,
-                        'col-md-8': screenHasOrders
+                        'col-md-8': screenHasOrders,
                     }"
                     v-if="!isLoading && screenHasAttachments"
                 >
@@ -27,7 +41,7 @@
                     >
                         <img
                             :class="{
-                                mediaContainer: isStandardPresentationMode
+                                mediaContainer: isStandardPresentationMode,
                             }"
                             :src="
                                 screen.attachments[currentSlide]
@@ -80,59 +94,57 @@
                         "
                         :key="screen.attachments[currentSlide]"
                     >
-                        <div class="container my-5">
-                            <div class="h-50">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img
-                                            :src="
-                                                screen.attachments[currentSlide]
-                                                    .tweetInfo.user.profileImage
-                                            "
-                                            alt=""
-                                            style="width:75%;height:25%;"
-                                        />
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h1 class="display-4">
-                                            {{
-                                                screen.attachments[currentSlide]
-                                                    .tweetInfo.user.user
-                                            }}
-                                        </h1>
-                                        <h4>
-                                            {{
-                                                screen.attachments[currentSlide]
-                                                    .text
-                                            }}
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="h-50">
-                                <div class="row">
-                                    <div
-                                        :class="
-                                            'col-md-' +
-                                                12 /
-                                                    screen.attachments[
-                                                        currentSlide
-                                                    ].tweetInfo.images.length
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img
+                                        :src="
+                                            screen.attachments[currentSlide]
+                                                .tweetInfo.user.profileImage
                                         "
-                                        v-for="(imageLink, index) in screen
-                                            .attachments[currentSlide].tweetInfo
-                                            .images"
-                                        :key="index"
+                                        alt=""
+                                        style="height: 25%"
+                                    />
+                                </div>
+                                <div class="col-md-7">
+                                    <h1 class="px-4 d-inline">
+                                        {{
+                                            screen.attachments[currentSlide]
+                                                .tweetInfo.user.user
+                                        }}
+                                    </h1>
+                                    <p class="px-4">
+                                        {{
+                                            screen.attachments[currentSlide]
+                                                .text
+                                        }}
+                                    </p>
+                                    <div
+                                        class="twitter-images"
+                                        style="margin-top: -58% !important"
                                     >
                                         <img
+                                            v-for="(imageLink, index) in screen
+                                                .attachments[currentSlide]
+                                                .tweetInfo.images"
+                                            :key="index"
                                             :src="imageLink"
                                             alt=""
                                             class="img-fluid"
-                                            style="height:40vh"
+                                            style="height: 35vh"
                                         />
                                     </div>
                                 </div>
                             </div>
+                            <!-- <div class="d-flex justify-content-center">
+                                
+                                <div class="h-25">
+                                    
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                
+                            </div> -->
                         </div>
                     </div>
                     <div
@@ -152,7 +164,12 @@
             </div>
             <div class="col-md-4 px-4" v-if="screen && screenHasOrders">
                 <h1
-                    class="my-1 display-1 font-weight-bold text-center text-white"
+                    class="
+                        my-1
+                        display-1
+                        font-weight-bold
+                        text-center text-white
+                    "
                 >
                     Orders
                 </h1>
@@ -167,11 +184,16 @@
                                 'order-card': true,
                                 'order-serving': servingOrder(order),
                                 'order-waiting': waitingOrder(order),
-                                'mx-2': true
+                                'mx-2': true,
                             }"
                         >
                             <h1
-                                class="display-4 py-5 text-center text-white font-weight-bold"
+                                class="
+                                    display-4
+                                    py-5
+                                    text-center text-white
+                                    font-weight-bold
+                                "
                             >
                                 {{ order.number }}
                             </h1>
@@ -201,7 +223,7 @@ export default {
             isLoading: true,
             screen: null,
             currentSlide: 0,
-            errorMessage: ""
+            errorMessage: "",
         };
     },
     computed: {
@@ -219,9 +241,9 @@ export default {
         screenHasAttachments() {
             return this.screen.attachments.length > 0;
         },
-        createBackgroundString(){
+        createBackgroundString() {
             return `linear-gradient(-60deg, ${this.screen.color1}, ${this.screen.color2})`;
-        }
+        },
     },
     mounted() {
         this.getData();
@@ -235,21 +257,21 @@ export default {
             "MessageAttached",
             "MessageDetached",
             "OrderHasBeenServed",
-            "OrderIsServing"
+            "OrderIsServing",
         ];
 
-        eventsTolisten.forEach(event => {
-            channel.listen(event, e => {
+        eventsTolisten.forEach((event) => {
+            channel.listen(event, (e) => {
                 this.handleSocketEvents({
                     name: event,
-                    data: e
+                    data: e,
                 });
             });
         });
     },
     methods: {
-        getData: function() {
-            axios.get(`/screen_resource/${this.id}`).then(response => {
+        getData: function () {
+            axios.get(`/screen_resource/${this.id}`).then((response) => {
                 this.screen = response.data;
                 this.startShow();
                 if (
@@ -260,7 +282,7 @@ export default {
                 else this.errorMessage = "no attachments";
             });
         },
-        startShow: function() {
+        startShow: function () {
             try {
                 var currentDuration = this.screen
                     ? this.screen.attachments[this.currentSlide].duration * 1000
@@ -272,7 +294,7 @@ export default {
             this.player.playVideo();
             // Do something after the playVideo command
         },
-        nextSlide: function(fromYoutube = false) {
+        nextSlide: function (fromYoutube = false) {
             if (this.currentSlide < this.screen.attachments.length - 1) {
                 this.currentSlide++;
             } else {
@@ -280,7 +302,7 @@ export default {
             }
             this.startShow();
         },
-        handleSocketEvents: function(event) {
+        handleSocketEvents: function (event) {
             console.log(event);
             switch (event.name) {
                 case "AttachmentAttached":
@@ -293,7 +315,7 @@ export default {
                     break;
                 case "AttachmentDetached":
                     var i = this.screen.attachments.findIndex(
-                        s => s.id === event.data.attachment.id
+                        (s) => s.id === event.data.attachment.id
                     );
                     this.screen.attachments.splice(i, 1);
                     this.startShow();
@@ -313,40 +335,40 @@ export default {
                     break;
                 case "MessageDetached":
                     var i = this.screen.messages.findIndex(
-                        s => s.id === event.data.message.id
+                        (s) => s.id === event.data.message.id
                     );
                     this.screen.messages.splice(i, 1);
                     break;
                 case "OrderHasBeenServed":
                     var orderIndex = this.screen.orders.findIndex(
-                        s => s.number === event.data.order.number
+                        (s) => s.number === event.data.order.number
                     );
                     this.screen.orders.splice(orderIndex, 1);
                     axios
                         .get(`/update-orders/${this.id}`)
-                        .then(response => {
+                        .then((response) => {
                             this.screen.orders = response.data.data;
                         })
-                        .catch(err => {
+                        .catch((err) => {
                             alert(err);
                         });
                     break;
                 case "OrderIsServing":
                     var orderIndex = this.screen.orders.findIndex(
-                        s => s.number === event.data.order.number
+                        (s) => s.number === event.data.order.number
                     );
                     this.screen.orders[orderIndex].status =
                         event.data.order.status;
                     break;
             }
         },
-        servingOrder: function(order) {
+        servingOrder: function (order) {
             return order.status === "serving";
         },
-        waitingOrder: function(order) {
+        waitingOrder: function (order) {
             return order.status === "waiting";
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -504,6 +526,10 @@ video#backgroundvid {
     z-index: -1;
 }
 
+.twitter-images img {
+    width: 50%;
+    height: 25%;
+}
 .bg2 {
     animation-direction: alternate-reverse;
     animation-duration: 4s;

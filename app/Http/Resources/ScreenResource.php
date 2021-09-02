@@ -18,7 +18,7 @@ class ScreenResource extends JsonResource
         $orders = Order::where([
             ['screen_id', $this->id],
             ['status', '!=', 'served']
-        ])->take(8)->get();
+        ])->orderByRaw("FIELD(status , 'serving','waiting') ASC")->take(8)->get();
         return [
             'id' => $this->id,
             'attachments' => AttachmentResource::collection($this->attachments),
