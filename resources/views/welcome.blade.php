@@ -36,7 +36,7 @@
                         <p>{{ __('queuesys.description') }}</p>
                     </div>
                     <div class="col-md-6">
-                        <img style="height:50vh" src="https://www.lamasatech.com/wp-content/uploads/2018/08/The-5-Best-Free-Digital-Signage-Software-Tools-1.png" alt="">
+                        <img style="height:50vh" src="{{ asset('images/The-5-Best-Free-Digital-Signage-Software-Tools-1.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h1 class="display-1 text-center text-white py-3">{{ __('Contact Us') }}</h1>
-                        <img class="img-fluid" src="https://appexert.com/images/contact_us.svg" alt="">
+                        <img class="img-fluid" src="{{ asset('images/contact_us.svg') }}" alt="">
                     </div>
                     <div class="col-md-6">
                         <form action="{{ route('contacts.store') }}" method="post">
