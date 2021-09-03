@@ -315,39 +315,6 @@
             {{ $messages->links('argon_paginator') }}
         </div>
       </div>
-      <div class="card">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0 {{ config('app.locale') === 'ar' ? 'rtl' : '' }}">{{ __('Widgets') }}</h3>
-            </div>
-              <div class="col text-right"><a href="#" class="btn btn-sm btn-primary {{ config('app.locale') === 'ar' ? 'float-left' : '' }}">{{ __('Widgets market') }}</a></div>
-          </div>
-        </div>
-        <div class="table-responsive">
-          <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">{{ __('Name') }}</th>
-                <th scope="col">{{ __('Action') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-                @forelse($widgets as $widget)
-                <tr>
-                  <th scope="row"><i class="fa fa-cloud"></i>{{ __(' Weather') }}</th>
-                  <td><button class="btn btn-outline-success">{{ __('Enable') }}</button></td>
-                </tr>
-                @empty
-                    <tr>
-                        <th scope="row" colspan="2"><h4 class="text-center">No widgets! get yours at <a href="#">{{ __('widget market') }}</a></h4></th>
-                    </tr>
-                @endforelse
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   </div>
 </div>

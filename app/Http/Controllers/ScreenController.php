@@ -49,7 +49,7 @@ class ScreenController extends Controller
         $screen = Auth::user()->screens()->create($request->only('title', 'location', 'presentation_mode', 'has_message_bar'));
 
         return redirect()->back()
-            ->with('success', "screen created successfully");
+            ->with('success', trans("screen created successfully"));
     }
 
     /**
@@ -103,7 +103,7 @@ class ScreenController extends Controller
         ]);
         event(new ScreenUpdated($screen));
         return redirect()->back()
-            ->with('success', "screen updated successfully");
+            ->with('success', trans("screen updated successfully"));
     }
 
     /**
@@ -117,7 +117,7 @@ class ScreenController extends Controller
         $screen->delete();
 
         return redirect()->back()
-            ->with('success', "screen deleted successfully");
+            ->with('success', trans("screen updated successfully"));
     }
 
     public function assignAttachment(Screen $screen, Attachment $attachment)
@@ -127,7 +127,7 @@ class ScreenController extends Controller
         event(new AttachmentAttached($screen, $attachment));
 
         return redirect()->back()
-            ->with('success', "attachment linked successfully");
+            ->with('success', trans("attachment linked successfully"));
     }
 
     public function assignMessage(Screen $screen, Message $message)
@@ -137,7 +137,7 @@ class ScreenController extends Controller
         event(new MessageAttached($screen, $message));
 
         return redirect()->back()
-            ->with('success', "message linked successfully");
+            ->with('success', trans("message linked successfully"));
     }
 
     public function showScreen(Screen $screen)
@@ -160,7 +160,7 @@ class ScreenController extends Controller
                 $screen->attachments()->detach($attachment);
                 event(new AttachmentDetached($screen, $attachment));
                 return redirect()->back()
-                    ->with('success', "attachment detached successfully");
+                    ->with('success', trans("attachment detached successfully"));
                 break;
             case 'message':
                 $message = Message::findOrFail($object);
@@ -169,7 +169,7 @@ class ScreenController extends Controller
                 event(new MessageDetached($screen, $message));
 
                 return redirect()->back()
-                    ->with('success', "message detached successfully");
+                    ->with('success', trans("message detached successfully"));
                 break;
         }
     }

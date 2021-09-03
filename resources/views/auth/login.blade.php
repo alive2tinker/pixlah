@@ -30,7 +30,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" type="email">
+                    <input class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('Email') }}" type="email">
                   </div>
                   @error('email')
                   <p class="text-danger">{{ $message }} </p>
@@ -41,7 +41,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" name="password" required autocomplete="current-password" id="password" type="password">
+                    <input class="form-control" placeholder="{{ __('Password') }}" name="password" required autocomplete="current-password" id="password" type="password">
                   </div>
                   @error('password')
                   <p class="text-danger">{{ $message }} </p>
@@ -50,21 +50,21 @@
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox">
                   <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
+                    <span class="text-muted">{{ __('Remember me') }}</span>
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4">{{ __('Login') }}</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="{{ route('password.request') }}" class="text-light"><small>Forgot password?</small></a>
+              <a href="{{ route('password.request') }}" class="text-light"><small>{{ __('Forgot password?') }}</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="{{ route('register') }}" class="text-light"><small>Create new account</small></a>
+              <a href="{{ route('register') }}" class="text-light"><small>{{ __('Create new account') }}</small></a>
             </div>
           </div>
         </div>

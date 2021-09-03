@@ -73,7 +73,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="/login" class="btn btn-outline-secondary bg-white">{{ __('login') }}</a>
+                        <a href="/login" class="btn btn-outline-secondary bg-white">{{ __('Login') }}</a>
                     </li>
                 </ul>
 

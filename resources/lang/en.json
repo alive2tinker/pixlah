@@ -58,5 +58,11 @@
     "Unlimited Screens": "",
     "Realtime broadcast and synchronization among screens": "",
     "Multiple presentation modes": "",
-    "Customization available on demand": ""
+    "Customization available on demand": "",
+    "allscreens.description":"System works flawlessly on all signage displays whether lobby or elevator screens. Also, we have android app for portable entertainment displays such as the ones in taxis, buses, etc.",
+    "realtimesync.description":"to manage content of your all your screens from one place with a click of a button, and you can do that from phone, tablet, or personal pc",
+    "queuesys.description":"If you are a business that need a queue system, we've got the right solution for you. Our queue system is embeded next to your content so your visitors know when it is their turn to be served.",
+    "aws.description":"we use the best storage infrastructure on the planet to ensure that your files are stored safely and properly",
+    "unlimitedscreens.description":"with small fee, you can create as many screens as you can to show your customers the content you want",
+    "ondemand.description":"Whatever you need, whether it is on premise installation or custom addons on the system, just contact us and we'll be happy to help"
 }

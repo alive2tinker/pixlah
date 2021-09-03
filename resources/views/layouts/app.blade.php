@@ -39,7 +39,7 @@
   <div id="app">
     @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show mi-alert" role="alert">
-      <strong>Success</strong> {{ Session::get('success') }}
+      <strong>{{ __('success') }}</strong> {{ Session::get('success') }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -48,7 +48,7 @@
     @if($errors->any())
     @foreach($errors->all() as $error)
     <div class="alert alert-danger alert-dismissible fade show mi-alert" role="alert">
-      <strong>Oops!</strong> {{ $error }}
+      <strong>{{ __('Oops!') }}</strong> {{ $error }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -62,7 +62,7 @@
         <div class="sidenav-header  align-items-center">
           <a class="navbar-brand" href="javascript:void(0)">
             {{-- <img src="{{ asset('theme/assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">--}}
-            <h1 class="display-4 logo"><i class="fa fa-tv mx-2"></i>{{ config('app.name') }}</h1>
+            <h1 class="display-4 logo"><i class="fa fa-tv mx-2"></i>{{ __(config('app.name')) }}</h1>
           </a>
         </div>
         <div class="navbar-inner">
@@ -71,9 +71,9 @@
             <!-- Nav items -->
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
-                  <i class="ni ni-tv-2 text-primary"></i>
-                  <span class="nav-link-text">Dashboard</span>
+                <a class="nav-link active" href="{{ route('home') }}">
+                  <i class="ni ni-tv-2 text-primary mx-2"></i>
+                  <span class="nav-link-text">{{ __('Dashboard') }}</span>
                 </a>
               </li>
             </ul>
@@ -94,7 +94,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                   </div>
-                  <input class="form-control" name="keyword" value="{{ request('keyword')}}" placeholder="Search" type="text">
+                  <input class="form-control" name="keyword" value="{{ request('keyword')}}" placeholder="{{ __('Search') }}" type="text">
                 </div>
               </div>
               <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -120,7 +120,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ config('app.locale')}} <i class="fa fa-caret-down"></i>
+                {{ LaravelLocalization::getCurrentLocaleNative() }} <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right  py-0">
                   <ul class="list-unstyled mx-4 py-4">
@@ -140,7 +140,7 @@
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                      <img alt="Image placeholder" src="https://via.placeholder.com/150/{{Auth::user()->thumbnail() ?? '006622?text=??'}}">
+                      <i class="fa fa-user"></i>
                     </span>
                     <div class="media-body  {{ config('app.locale') === 'ar' ? 'mr-2' : 'ml-2' }}  d-none d-lg-block">
                       <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>

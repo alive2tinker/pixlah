@@ -8,7 +8,6 @@
             <option value="quote">Quote</option>
             <option value="video">Video</option>
             <option value="youtube">Youtube</option>
-            <option value="twitter">Twitter</option>
         </select>
     </div>
     <div class="form-group" v-if="form.type === 'image' || form.type === 'quote' || form.type === 'video'">

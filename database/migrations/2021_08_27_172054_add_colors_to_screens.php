@@ -14,8 +14,8 @@ class AddColorsToScreens extends Migration
     public function up()
     {
         Schema::table('screens', function (Blueprint $table) {
-            $table->string('color_1')->default('#106eaf');
-            $table->string('color_2')->default('#1fa496');
+            $table->string('color_1')->default('#5603ad');
+            $table->string('color_2')->default('#8965e0');
             $table->string('color_3')->default('0');
         });
     }

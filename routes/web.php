@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ScreenController;
 use App\Http\Controllers\OrderController;
@@ -31,7 +32,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('landing');
+
+    Route::resource('/contacts', ContactController::class)->only('store');
 
     Route::get('/assignAttachment/{screen}/{attachment}', [ScreenController::class, 'assignAttachment'])->name('assignAttachment');
     Route::get('/assignMessage/{screen}/{message}', [ScreenController::class, 'assignMessage'])->name('assignMessage');
