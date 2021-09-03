@@ -118,7 +118,7 @@
         var cCustomer;
         var i = 0;
         setInterval(function() {
-            cCustomer = pCustomers[Math.floor(Math.random() * This is a success alert— check it out!pCustomers.length - 1)];
+            cCustomer = pCustomers[Math.floor(Math.random() * pCustomers.length - 1)];
             typewriter();
             i = 0;
             $("#pCustomer").html("");
