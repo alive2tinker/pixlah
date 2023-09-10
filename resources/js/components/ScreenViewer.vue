@@ -204,7 +204,7 @@
         </div>
         <div
             class="messageBar"
-            v-if="screen && (screen.hasMessageBar || screenHasOrders)"
+            v-if="screen && (screen.hasMessageBar)"
         >
             <ul>
                 <li v-for="message in screen.messages" :key="message.id">

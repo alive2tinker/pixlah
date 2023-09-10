@@ -2470,8 +2470,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   key: '598128a1366d8d8fa2e7',
   wsHost: window.location.hostname,
   wsPort: 6001,
-  forceTLS: false,
-  disableStats: true
+  disableStats: false
 });
 
 /***/ }),
@@ -46109,7 +46108,7 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _vm.screen && (_vm.screen.hasMessageBar || _vm.screenHasOrders)
+    _vm.screen && _vm.screen.hasMessageBar
       ? _c("div", { staticClass: "messageBar" }, [
           _c(
             "ul",
