@@ -82,7 +82,7 @@
             <div class="form-group">
               <label for="">{{ __('Show a message bar') }}?</label>
               <label class="custom-toggle mx-2">
-                <input type="checkbox" name="has_message_bar" id="hmb-value">
+                <input type="checkbox" name="has_message_bar" id="hmb-value" value="1">
                 <span class="custom-toggle-slider rounded-circle" id="hmb-check" data-label-off="No" data-label-on="Yes"></span>
               </label>
             </div>

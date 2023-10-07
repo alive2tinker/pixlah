@@ -169,7 +169,8 @@ class AttachmentController extends Controller
             $attachment->screens()->detach($screen);
             event(new AttachmentDetached($screen, $attachment));
         }
-
+        //delete file before deleting attachment
+        Storage::disk('public')->delete("attachments/{$attachment->title}");
         $attachment->delete();
         return redirect()->back()
         ->with('success', "attachment deleted successfully");

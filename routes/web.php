@@ -36,6 +36,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::resource('/contacts', ContactController::class)->only('store');
 
+    Route::post('update-colors/{screen}', [ScreenController::class, 'updateColors'])->name('updateScreenColors');
+
     Route::get('/assignAttachment/{screen}/{attachment}', [ScreenController::class, 'assignAttachment'])->name('assignAttachment');
     Route::get('/assignMessage/{screen}/{message}', [ScreenController::class, 'assignMessage'])->name('assignMessage');
     Route::resource('screens', ScreenController::class);

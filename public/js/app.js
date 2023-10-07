@@ -1874,15 +1874,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     VSwatches: (vue_swatches__WEBPACK_IMPORTED_MODULE_0___default())
   },
+  props: ['screen'],
   data: function data() {
     return {
-      color: "#A463BF"
+      color: "#A463BF",
+      color2: "#A463BF",
+      color3: "#A463BF"
     };
+  },
+  mounted: function mounted() {
+    this.fetchScreen();
+  },
+  methods: {
+    fetchScreen: function fetchScreen() {
+      var _this = this;
+
+      axios.get("/screen_resource/".concat(this.screen)).then(function (response) {
+        console.log(response.data);
+        _this.color = response.data.color1;
+        _this.color2 = response.data.color2;
+        _this.color3 = response.data.color3;
+      });
+    },
+    updateColors: function updateColors() {
+      axios.post("/update-colors/".concat(this.screen), {
+        color1: this.color,
+        color2: this.color2,
+        color3: this.color3
+      }).then(function (response) {
+        return alert('updated successfully');
+      })["catch"](function (err) {
+        return alert(err);
+      });
+    }
   }
 });
 
@@ -1899,15 +1939,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2299,6 +2330,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.currentSlide = 0;
       }
 
+      if (this.currentSlide.type === 'video') {
+        document.getElementById('backgroundvid').msRequestFullScreen();
+      }
+
       this.startShow();
     },
     handleSocketEvents: function handleSocketEvents(event) {
@@ -2307,6 +2342,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log(event);
 
       switch (event.name) {
+        case "ScreenColorUpdated":
+          alert('color updated');
+          break;
+
         case "AttachmentAttached":
           this.screen.attachments.push(event.data.attachment);
           if (this.isLoading) this.isLoading = false;
@@ -2470,7 +2509,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   key: '598128a1366d8d8fa2e7',
   wsHost: window.location.hostname,
   wsPort: 6001,
-  disableStats: false
+  forceTLS: false,
+  disableStats: true
 });
 
 /***/ }),
@@ -6916,6 +6956,30 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vue-swatches__trigger{\r\n    width: 100px;\r\n    height: 100px;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css& ***!
@@ -6933,7 +6997,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nhtml[data-v-575e5289],\nbody[data-v-575e5289] {\n    margin: 0;\n    width: 100%;\n    height: 100vh;\n    overflow: hidden;\n}\n.standardPresentation *[data-v-575e5289] {\n    width: 100%;\n    height: 100vh;\n}\n.theater-presentation[data-v-575e5289] {\n    top: 2%;\n    right: 1%;\n    left: 1%;\n    position: fixed;\n}\n.theater-presentation *[data-v-575e5289] {\n    width: 100%;\n    height: 89vh;\n}\n[data-v-575e5289]:root {\n    --dimension: 100px;\n    --thickness: 4px;\n    --color: red;\n}\n@-webkit-keyframes rotate-data-v-575e5289 {\nto {\n        transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-575e5289 {\nto {\n        transform: rotate(360deg);\n}\n}\n.spinnerContainer[data-v-575e5289] {\n    display: grid;\n    place-items: center;\n    height: 100vh;\n    z-index: 99999999999999999999999 !important;\n}\n.arc[data-v-575e5289] {\n    position: relative;\n    width: var(--dimension);\n    height: var(--dimension);\n}\n.arc[data-v-575e5289]:before,\n.arc[data-v-575e5289]:after {\n    border-bottom: var(--thickness) solid var(--color);\n    border-left: var(--thickness) solid transparent;\n    border-radius: 50%;\n    border-right: var(--thickness) solid var(--color);\n    border-top: var(--thickness) solid var(--color);\n    bottom: 0;\n    box-sizing: border-box;\n    content: \"\";\n    left: 0;\n    margin: auto;\n    position: absolute;\n    right: 0;\n    top: 0;\n    transform-origin: center center;\n}\n.arc[data-v-575e5289]:before {\n    -webkit-animation: rotate-data-v-575e5289 1s ease-in-out infinite;\n            animation: rotate-data-v-575e5289 1s ease-in-out infinite;\n    height: 100%;\n    width: 100%;\n}\n.arc[data-v-575e5289]:after {\n    animation: rotate-data-v-575e5289 1s ease-in-out infinite reverse;\n    height: 50%;\n    width: 50%;\n}\n.messageBar[data-v-575e5289] {\n    width: 100%;\n    height: 7vh;\n    position: absolute;\n    bottom: 0em !important;\n    background: rgba(0, 0, 0, 0.3);\n    overflow: hidden;\n    padding-top: 0.5em;\n}\n.messageBar ul[data-v-575e5289] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    line-height: 50px;\n    font-size: 30px;\n    list-style: none;\n    text-align: center;\n    transform: translateX(100%);\n    -webkit-animation: scroll-left-data-v-575e5289 20s linear infinite;\n    animation: scroll-left-data-v-575e5289 20s linear infinite;\n}\n.messageBar ul li[data-v-575e5289] {\n    color: white;\n    display: inline-block;\n}\n.messageBar ul li[data-v-575e5289]:before {\n    content: \"|\";\n    padding-left: 1em;\n    padding-right: 1em;\n}\n.messageBar ul li[data-v-575e5289]:first-child:before {\n    content: \"\";\n    padding-left: 1em;\n    padding-right: 1em;\n}\n.mediaContainer[data-v-575e5289] {\n    -webkit-animation: fadein-data-v-575e5289 2s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */\n    animation: fadein-data-v-575e5289 0.5s;\n}\nvideo#backgroundvid[data-v-575e5289] {\n    position: fixed;\n    right: 0;\n    bottom: 0;\n    min-width: 100%;\n    min-height: 100%;\n}\n.quote-container[data-v-575e5289] {\n    position: absolute;\n    width: 80%;\n    height: 80vh;\n    background: rgba(0, 0, 0, 0.3);\n    top: 10%;\n    left: 10%;\n    text-align: center;\n}\n.q-text[data-v-575e5289] {\n    position: absolute;\n    top: 25%;\n    color: white;\n}\n.bg[data-v-575e5289] {\n    -webkit-animation: slide-data-v-575e5289 3s ease-in-out infinite alternate;\n            animation: slide-data-v-575e5289 3s ease-in-out infinite alternate;\n    bottom: 0;\n    left: -50%;\n    opacity: 0.5;\n    position: fixed;\n    right: -50%;\n    top: 0;\n    z-index: -1;\n}\n.twitter-images img[data-v-575e5289] {\n    width: 50%;\n    height: 25%;\n}\n.bg2[data-v-575e5289] {\n    animation-direction: alternate-reverse;\n    -webkit-animation-duration: 4s;\n            animation-duration: 4s;\n}\n.bg3[data-v-575e5289] {\n    -webkit-animation-duration: 5s;\n            animation-duration: 5s;\n}\n#errorMessage[data-v-575e5289] {\n    position: absolute;\n    text-align: center;\n    top: 60%;\n    left: 50%;\n    transform: translateX(-50%);\n}\n.order-card[data-v-575e5289] {\n    border-radius: 2rem;\n}\n.order-serving[data-v-575e5289] {\n    background: green;\n}\n.order-waiting[data-v-575e5289] {\n    background: red;\n}\n@-webkit-keyframes scroll-left-data-v-575e5289 {\n0% {\n        -webkit-transform: translateX(100%);\n}\n100% {\n        -webkit-transform: translateX(-100%);\n}\n}\n@keyframes scroll-left-data-v-575e5289 {\n0% {\n        transform: translateX(100%);\n}\n100% {\n        transform: translateX(-100%);\n}\n}\n@keyframes fadein-data-v-575e5289 {\nfrom {\n        opacity: 0;\n}\nto {\n        opacity: 1;\n}\n}\n@-webkit-keyframes slide-data-v-575e5289 {\n0% {\n        transform: translateX(-25%);\n}\n100% {\n        transform: translateX(25%);\n}\n}\n@keyframes slide-data-v-575e5289 {\n0% {\n        transform: translateX(-25%);\n}\n100% {\n        transform: translateX(25%);\n}\n}\n/* Firefox < 16 */\n\n/* Safari, Chrome and Opera > 12.1 */\n@-webkit-keyframes fadein-data-v-575e5289 {\nfrom {\n        opacity: 0;\n}\nto {\n        opacity: 1;\n}\n}\n\n/* Internet Explorer */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nhtml[data-v-575e5289],\r\nbody[data-v-575e5289] {\r\n    margin: 0;\r\n    width: 100%;\r\n    height: 100vh;\r\n    overflow: hidden;\n}\n.standardPresentation *[data-v-575e5289] {\r\n    width: 100%;\r\n    height: 100vh;\n}\n.theater-presentation[data-v-575e5289] {\r\n    top: 2%;\r\n    right: 1%;\r\n    left: 1%;\r\n    position: fixed;\n}\n.theater-presentation *[data-v-575e5289] {\r\n    width: 100%;\r\n    height: 89vh;\n}\n[data-v-575e5289]:root {\r\n    --dimension: 100px;\r\n    --thickness: 4px;\r\n    --color: red;\n}\n@-webkit-keyframes rotate-data-v-575e5289 {\nto {\r\n        transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-575e5289 {\nto {\r\n        transform: rotate(360deg);\n}\n}\n.spinnerContainer[data-v-575e5289] {\r\n    display: grid;\r\n    place-items: center;\r\n    height: 100vh;\r\n    z-index: 99999999999999999999999 !important;\n}\n.arc[data-v-575e5289] {\r\n    position: relative;\r\n    width: var(--dimension);\r\n    height: var(--dimension);\n}\n.arc[data-v-575e5289]:before,\r\n.arc[data-v-575e5289]:after {\r\n    border-bottom: var(--thickness) solid var(--color);\r\n    border-left: var(--thickness) solid transparent;\r\n    border-radius: 50%;\r\n    border-right: var(--thickness) solid var(--color);\r\n    border-top: var(--thickness) solid var(--color);\r\n    bottom: 0;\r\n    box-sizing: border-box;\r\n    content: \"\";\r\n    left: 0;\r\n    margin: auto;\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n    transform-origin: center center;\n}\n.arc[data-v-575e5289]:before {\r\n    -webkit-animation: rotate-data-v-575e5289 1s ease-in-out infinite;\r\n            animation: rotate-data-v-575e5289 1s ease-in-out infinite;\r\n    height: 100%;\r\n    width: 100%;\n}\n.arc[data-v-575e5289]:after {\r\n    animation: rotate-data-v-575e5289 1s ease-in-out infinite reverse;\r\n    height: 50%;\r\n    width: 50%;\n}\n.messageBar[data-v-575e5289] {\r\n    width: 100%;\r\n    height: 7vh;\r\n    position: absolute;\r\n    bottom: 0em !important;\r\n    background: rgba(0, 0, 0, 0.3);\r\n    overflow: hidden;\r\n    padding-top: 0.5em;\n}\n.messageBar ul[data-v-575e5289] {\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 100%;\r\n    margin: 0;\r\n    line-height: 50px;\r\n    font-size: 30px;\r\n    list-style: none;\r\n    text-align: center;\r\n    transform: translateX(100%);\r\n    -webkit-animation: scroll-left-data-v-575e5289 20s linear infinite;\r\n    animation: scroll-left-data-v-575e5289 20s linear infinite;\n}\n.messageBar ul li[data-v-575e5289] {\r\n    color: white;\r\n    display: inline-block;\n}\n.messageBar ul li[data-v-575e5289]:before {\r\n    content: \"|\";\r\n    padding-left: 1em;\r\n    padding-right: 1em;\n}\n.messageBar ul li[data-v-575e5289]:first-child:before {\r\n    content: \"\";\r\n    padding-left: 1em;\r\n    padding-right: 1em;\n}\n.mediaContainer[data-v-575e5289] {\r\n    -webkit-animation: fadein-data-v-575e5289 2s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */\r\n    animation: fadein-data-v-575e5289 0.5s;\n}\nvideo#backgroundvid[data-v-575e5289] {\r\n    position: fixed;\r\n    right: 0;\r\n    bottom: 0;\r\n    min-width: 100%;\r\n    min-height: 100%;\n}\n.quote-container[data-v-575e5289] {\r\n    position: absolute;\r\n    width: 80%;\r\n    height: 80vh;\r\n    background: rgba(0, 0, 0, 0.3);\r\n    top: 10%;\r\n    left: 10%;\r\n    text-align: center;\n}\n.q-text[data-v-575e5289] {\r\n    position: absolute;\r\n    top: 25%;\r\n    color: white;\n}\n.bg[data-v-575e5289] {\r\n    -webkit-animation: slide-data-v-575e5289 3s ease-in-out infinite alternate;\r\n            animation: slide-data-v-575e5289 3s ease-in-out infinite alternate;\r\n    bottom: 0;\r\n    left: -50%;\r\n    opacity: 0.5;\r\n    position: fixed;\r\n    right: -50%;\r\n    top: 0;\r\n    z-index: -1;\n}\n.twitter-images img[data-v-575e5289] {\r\n    width: 50%;\r\n    height: 25%;\n}\n.bg2[data-v-575e5289] {\r\n    animation-direction: alternate-reverse;\r\n    -webkit-animation-duration: 4s;\r\n            animation-duration: 4s;\n}\n.bg3[data-v-575e5289] {\r\n    -webkit-animation-duration: 5s;\r\n            animation-duration: 5s;\n}\n#errorMessage[data-v-575e5289] {\r\n    position: absolute;\r\n    text-align: center;\r\n    top: 60%;\r\n    left: 50%;\r\n    transform: translateX(-50%);\n}\n.order-card[data-v-575e5289] {\r\n    border-radius: 2rem;\n}\n.order-serving[data-v-575e5289] {\r\n    background: green;\n}\n.order-waiting[data-v-575e5289] {\r\n    background: red;\n}\n@-webkit-keyframes scroll-left-data-v-575e5289 {\n0% {\r\n        -webkit-transform: translateX(100%);\n}\n100% {\r\n        -webkit-transform: translateX(-100%);\n}\n}\n@keyframes scroll-left-data-v-575e5289 {\n0% {\r\n        transform: translateX(100%);\n}\n100% {\r\n        transform: translateX(-100%);\n}\n}\n@keyframes fadein-data-v-575e5289 {\nfrom {\r\n        opacity: 0;\n}\nto {\r\n        opacity: 1;\n}\n}\n@-webkit-keyframes slide-data-v-575e5289 {\n0% {\r\n        transform: translateX(-25%);\n}\n100% {\r\n        transform: translateX(25%);\n}\n}\n@keyframes slide-data-v-575e5289 {\n0% {\r\n        transform: translateX(-25%);\n}\n100% {\r\n        transform: translateX(25%);\n}\n}\r\n/* Firefox < 16 */\r\n\r\n/* Safari, Chrome and Opera > 12.1 */\n@-webkit-keyframes fadein-data-v-575e5289 {\nfrom {\r\n        opacity: 0;\n}\nto {\r\n        opacity: 1;\n}\n}\r\n\r\n/* Internet Explorer */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44987,6 +45051,36 @@ module.exports = Sister;
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css& ***!
@@ -45309,15 +45403,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=template&id=023f0f94& */ "./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&");
 /* harmony import */ var _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/ColorPicker.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _ColorPicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__.render,
   _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -45463,6 +45559,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css&":
 /*!***********************************************************************************************************!*\
   !*** ./resources/js/components/ScreenViewer.vue?vue&type=style&index=0&id=575e5289&scoped=true&lang=css& ***!
@@ -45548,9 +45657,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form__input" },
+      { staticClass: "form__input d-flex" },
       [
         _c("v-swatches", {
+          staticClass: "mx-4",
           attrs: {
             "show-fallback": "",
             "fallback-input-type": "color",
@@ -45563,10 +45673,37 @@ var render = function() {
             },
             expression: "color"
           }
+        }),
+        _vm._v(" "),
+        _c("v-swatches", {
+          staticClass: "mx-4",
+          attrs: {
+            "show-fallback": "",
+            "fallback-input-type": "color",
+            "popover-x": "left"
+          },
+          model: {
+            value: _vm.color2,
+            callback: function($$v) {
+              _vm.color2 = $$v
+            },
+            expression: "color2"
+          }
         })
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "mx-4 my-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-primary",
+          on: { click: _vm.updateColors }
+        },
+        [_vm._v("Update")]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -45575,7 +45712,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form__label" }, [
-      _c("strong", [_vm._v("Please choose a color:")])
+      _c("strong", [_vm._v("Please select template colors: ")])
     ])
   }
 ]
@@ -45643,54 +45780,20 @@ var render = function() {
           _vm._v(" "),
           _c("option", { attrs: { value: "quote" } }, [_vm._v("Quote")]),
           _vm._v(" "),
-          _c("option", { attrs: { value: "video" } }, [_vm._v("Video")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "youtube" } }, [_vm._v("Youtube")])
+          _c("option", { attrs: { value: "video" } }, [_vm._v("Video")])
         ]
       )
     ]),
     _vm._v(" "),
-    _vm.form.type === "image" ||
-    _vm.form.type === "quote" ||
-    _vm.form.type === "video"
-      ? _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "fileuploader" } }, [_vm._v("File")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "file" },
-            on: { change: _vm.appendImage }
-          })
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.form.type != "video" || _vm.form.type === "youtube"
-      ? _c("div", { staticClass: "form-group" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.duration,
-                expression: "form.duration"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "number", id: "slide-duration" },
-            domProps: { value: _vm.form.duration },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "duration", $event.target.value)
-              }
-            }
-          })
-        ])
-      : _vm._e(),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "fileuploader" } }, [_vm._v("File")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "file" },
+        on: { change: _vm.appendImage }
+      })
+    ]),
     _vm._v(" "),
     _vm.form.type === "quote"
       ? _c("div", { staticClass: "form-group" }, [
@@ -45720,34 +45823,6 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.form.type === "twitter" || _vm.form.type === "youtube"
-      ? _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "link-input" } }, [_vm._v("Link")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.link,
-                expression: "form.link"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.link },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "link", $event.target.value)
-              }
-            }
-          })
-        ])
-      : _vm._e(),
-    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-5" }, [
         _c(
@@ -45763,17 +45838,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "slide-duration" } }, [
-      _vm._v("Duration"),
-      _c("small", { staticClass: "text-muted mx-2" }, [_vm._v("in seconds")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -300,11 +300,17 @@ export default {
             } else {
                 this.currentSlide = 0;
             }
+            if(this.currentSlide.type === 'video'){
+                document.getElementById('backgroundvid').msRequestFullScreen();
+            }
             this.startShow();
         },
         handleSocketEvents: function (event) {
             console.log(event);
             switch (event.name) {
+                case "ScreenColorUpdated":
+                    alert('color updated');
+                    break;
                 case "AttachmentAttached":
                     this.screen.attachments.push(event.data.attachment);
                     if (this.isLoading) this.isLoading = false;

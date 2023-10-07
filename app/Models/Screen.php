@@ -14,7 +14,10 @@ class Screen extends Model
         'location',
         'has_message_bar',
         'presentation_mode',
-        'user_id'
+        'user_id',
+        'color_1',
+        'color_2',
+        'color_3',
     ];
 
     public function user()

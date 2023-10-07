@@ -7,24 +7,15 @@
             <option value="image">Image</option>
             <option value="quote">Quote</option>
             <option value="video">Video</option>
-            <option value="youtube">Youtube</option>
         </select>
     </div>
-    <div class="form-group" v-if="form.type === 'image' || form.type === 'quote' || form.type === 'video'">
+    <div class="form-group">
         <label for="fileuploader">File</label>
         <input type="file" @change="appendImage" class="form-control">
-    </div>
-    <div class="form-group" v-if="form.type != 'video' || form.type === 'youtube'">
-        <label for="slide-duration">Duration<small class="text-muted mx-2">in seconds</small></label>
-        <input type="number" class="form-control" id="slide-duration" v-model="form.duration">
     </div>
     <div class="form-group" v-if="form.type === 'quote'">
         <label for="quote-text">Quote Text</label>
         <textarea v-model="form.text" id="quote-text" cols="10" rows="4" class="form-control"></textarea>
-    </div>
-    <div class="form-group" v-if="form.type === 'twitter' || form.type === 'youtube'">
-        <label for="link-input">Link</label>
-        <input type="text" v-model="form.link" class="form-control">
     </div>
     <div class="row justify-content-center">
         <div class="col-md-5"><button class="btn btn-primary btn-block" :disabled="!inputValidated()" @click="submitForm">Save</button></div>

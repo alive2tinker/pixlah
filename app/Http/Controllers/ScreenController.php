@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\AttachmentAttached;
 use App\Events\AttachmentDetached;
 use App\Events\MessageAttached;
+use App\Events\ScreenColorUpdated;
 use App\Events\MessageDetached;
 use App\Events\ScreenUpdated;
 use App\Models\Message;
@@ -172,5 +173,18 @@ class ScreenController extends Controller
                     ->with('success', trans("message detached successfully"));
                 break;
         }
+    }
+
+    public function updateColors(Request $request, Screen $screen)
+    {
+        $screen->update([
+            'color_1' => $request->input('color1'),
+            'color_2' => $request->input('color2'),
+            'color_3' => $request->input('color3'),
+        ]);
+
+        event(new ScreenColorUpdated($screen));
+
+        return response()->json([], 200);
     }
 }
