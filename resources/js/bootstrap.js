@@ -39,7 +39,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      broadcaster: 'pusher',
      key: '598128a1366d8d8fa2e7',
      wsHost: window.location.hostname,
-     wsPort: 6001,
-     forceTLS: false,
+     wsPort: 3031,
+     forceTLS: true,
+     cluster: 'ap2',
      disableStats: true,
  });

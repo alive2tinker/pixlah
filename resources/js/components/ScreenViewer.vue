@@ -55,21 +55,7 @@
                         v-if="screen.attachments[currentSlide].type === 'quote'"
                         :key="screen.attachments[currentSlide]"
                     >
-                        <div class="mediaContainer" :key="currentSlide">
-                            <img
-                                :src="
-                                    screen.attachments[currentSlide]
-                                        ? screen.attachments[currentSlide].link
-                                        : ''
-                                "
-                                alt=""
-                            />
-                            <div class="quote-container">
-                                <h1 class="display-4 q-text">
-                                    {{ screen.attachments[currentSlide].text }}
-                                </h1>
-                            </div>
-                        </div>
+                        <quote-component :data="screen.attachments[currentSlide]"></quote-component>
                     </div>
                     <div
                         v-if="screen.attachments[currentSlide].type === 'video'"
@@ -216,7 +202,11 @@
 </template>
 
 <script>
+import QuoteComponent from './QuoteComponent.vue';
 export default {
+    components:{
+        QuoteComponent
+    },
     props: ["id"],
     data() {
         return {
